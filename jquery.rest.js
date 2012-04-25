@@ -108,7 +108,14 @@
 
       if (typeof settings.data !== "string")
       if (settings.data != null) {
-          settings.data = $.param(settings.data);
+		  if(settings.dataType == 'json'){
+		  	  for(field in settings.data){
+		  	  	 settings.data = JSON.stringify(settings.data);
+		  	  	 break;
+		  	  }
+		  } else {
+		  	  settings.data = $.param(settings.data);
+		  }
       }
 
       settings.data = settings.data || "";
